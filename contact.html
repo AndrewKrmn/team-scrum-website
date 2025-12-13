@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Контакти - Team Website</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/auth.css"> </head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo"><a href="index.html" style="text-decoration:none; color:inherit;">Team Website</a></div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Головна</a></li>
+                <li><a href="contact.html" class="active">Контакти</a></li>
+                <li><a href="profile.html">Профіль</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="auth-container">
+        <div class="auth-box">
+            <h1>Зв'яжіться з нами</h1>
+            <p style="text-align: center; margin-bottom: 20px; color: #666;">Ми відповімо протягом 24 годин</p>
+            
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="name">Ваше ім'я:</label>
+                    <input type="text" id="contactName" required placeholder="Як до вас звертатися?">
+                </div>
+                <div class="form-group">
+                    <label for="subject">Тема:</label>
+                    <select id="contactSubject" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+                        <option value="support">Технічна підтримка</option>
+                        <option value="sales">Співпраця</option>
+                        <option value="other">Інше</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="message">Повідомлення:</label>
+                    <textarea id="contactMessage" rows="5" required placeholder="Опишіть ваше питання..." 
+                    style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; resize: vertical;"></textarea>
+                </div>
+                
+                <button type="submit" class="btn btn-primary full-width">Відправити</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/contact.js"></script>
+</body>
+</html>
