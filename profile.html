@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Мій профіль - Team Website</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/profile.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo"><a href="index.html" style="text-decoration:none; color:inherit;">Team Website</a></div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Головна</a></li>
+                <li><a href="profile.html" class="active">Профіль</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="profile-container">
+        <div class="profile-header">
+            <h1>Особистий кабінет</h1>
+            <button onclick="logout()" class="btn btn-secondary logout-btn">Вийти</button>
+        </div>
+        
+        <div class="profile-content">
+            <div class="profile-card">
+                <div class="avatar-placeholder">👤</div>
+                <h2 id="displayUsername">Користувач</h2>
+                <p id="displayEmail" class="email-text">email@example.com</p>
+                <p class="join-date">З нами з: <span id="displayDate">...</span></p>
+            </div>
+
+            <div class="profile-settings">
+                <h3>Редагувати дані</h3>
+                <form id="editProfileForm">
+                    <div class="form-group">
+                        <label>Змінити ім'я:</label>
+                        <input type="text" id="newUsername" placeholder="Нове ім'я">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Зберегти зміни</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/profile.js"></script>
+</body>
+</html>
