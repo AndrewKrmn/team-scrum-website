@@ -58,3 +58,43 @@ function showError(fieldId, message) {
         field.classList.remove('error');
     }, 3000);
 }
+// --- ЛОГІКА ВХОДУ (LOGIN) ---
+document.getElementById('loginForm')?.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const remember = document.getElementById('remember').checked;
+
+    // Отримуємо всіх користувачів
+    const users = JSON.parse(localStorage.getItem('users') || '[]');
+    
+    // Хешуємо введений пароль, щоб порівняти з тим, що в базі
+    const hashedPassword = btoa(password);
+
+    // Шукаємо користувача
+    const user = users.find(u => u.email === email && u.password === hashedPassword);
+
+    if (user) {
+        // Якщо знайшли — створюємо "сесію"
+        const sessionData = {
+            userId: user.id,
+            username: user.username,
+            email: user.email,
+            loginTime: new Date().toISOString()
+        };
+
+        // Якщо галочка "Запам'ятати мене" стоїть — пишемо в localStorage (назавжди)
+        // Якщо ні — в sessionStorage (до закриття вкладки)
+        if (remember) {
+            localStorage.setItem('currentUser', JSON.stringify(sessionData));
+        } else {
+            sessionStorage.setItem('currentUser', JSON.stringify(sessionData));
+        }
+
+        alert('Вхід успішний! Ласкаво просимо, ' + user.username);
+        window.location.href = 'profile.html'; // Перекидаємо на профіль (поки буде 404)
+    } else {
+        alert('Невірний email або пароль');
+    }
+});
