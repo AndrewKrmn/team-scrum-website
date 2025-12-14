@@ -3,54 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ласкаво просимо - Team Website</title>
+    <title>Головна - Team Website</title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/home.css">
+    <style>
+        /* Додаткові стилі спеціально для головної */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+        .hero h1 { font-size: 3em; margin-bottom: 20px; }
+        .hero p { font-size: 1.2em; margin-bottom: 30px; }
+        
+        .btn-lg {
+            padding: 15px 30px;
+            font-size: 1.1em;
+            background: white;
+            color: #764ba2;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            display: inline-block;
+        }
+        .btn-lg:hover { background: #f0f0f0; }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .feature-card {
+            padding: 20px;
+            text-align: center;
+            border: 1px solid #eee;
+            border-radius: 10px;
+        }
+    </style>
 </head>
 <body>
+
     <nav class="navbar">
         <div class="container">
-            <div class="logo">Team Website</div>
+            <div class="logo"><a href="index.html" style="text-decoration:none; color:inherit;">Team Website</a></div>
             <ul class="nav-menu">
                 <li><a href="index.html" class="active">Головна</a></li>
-                <li><a href="#">Реєстрація</a></li>
-                <li><a href="#">Вхід</a></li>
-                <li><a href="#">Контакти</a></li>
+                <li id="nav-register"><a href="register.html">Реєстрація</a></li>
+                <li id="nav-login"><a href="login.html">Вхід</a></li>
+                <li><a href="contact.html">Контакти</a></li>
+                <li id="nav-profile" style="display: none;"><a href="profile.html">Мій Профіль</a></li>
             </ul>
         </div>
     </nav>
 
-    <section class="hero">
-        <div class="container">
-            <h1>Ласкаво просимо!</h1>
-            <p>Зареєструйтеся та приєднуйтесь до нашої спільноти</p>
-            <div class="cta-buttons">
-                <a href="#" class="btn btn-primary">Реєстрація</a>
-                <a href="#" class="btn btn-secondary">Вхід</a>
-            </div>
+    <header class="hero">
+        <h1>Вітаємо на нашому порталі!</h1>
+        <p>Найкраще рішення для командної роботи та управління проектами.</p>
+        
+        <a href="register.html" class="btn-lg" id="cta-button">Почати роботу</a>
+    </header>
+
+    <section class="features">
+        <div class="feature-card">
+            <h3>🚀 Швидкість</h3>
+            <p>Миттєвий доступ до всіх інструментів.</p>
+        </div>
+        <div class="feature-card">
+            <h3>🔒 Безпека</h3>
+            <p>Ваші дані надійно захищені.</p>
+        </div>
+        <div class="feature-card">
+            <h3>🤝 Команда</h3>
+            <p>Зручна взаємодія між учасниками.</p>
         </div>
     </section>
 
-    <section class="features">
-        <div class="container">
-            <h2>Наші переваги</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <h3>Простота використання</h3>
-                    <p>Інтуїтивний інтерфейс</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Безпека</h3>
-                    <p>Захист ваших даних</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Підтримка</h3>
-                    <p>Завжди на зв'язку</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <script src="js/main.js"></script>
+    <script>
+        // Перевіряємо, чи ми залогінені
+        const user = localStorage.getItem('currentUser') || sessionStorage.getItem('currentUser');
+        
+        if (user) {
+            // Якщо залогінені:
+            // 1. Ховаємо кнопки входу/реєстрації
+            document.getElementById('nav-register').style.display = 'none';
+            document.getElementById('nav-login').style.display = 'none';
+            
+            // 2. Показуємо кнопку профілю
+            document.getElementById('nav-profile').style.display = 'block';
+
+            // 3. Кнопку "Почати роботу" змінюємо на "В кабінет"
+            const ctaBtn = document.getElementById('cta-button');
+            ctaBtn.textContent = "Перейти в кабінет";
+            ctaBtn.href = "profile.html";
+        }
+    </script>
 </body>
 </html>
